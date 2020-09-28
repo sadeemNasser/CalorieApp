@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+   
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+    <link rel="icon" href="../images/Calorie.svg">
+
+    <title>Calorie</title>
+  </head>
+  <body>
+    <div class="container sign-up-mode">
+        <div class="forms-container">
+          <div class="signin-signup">
+            <form action="#" class="sign-in-form">
+                
+            </form>
+            <form action="#" class="sign-up-form">
+              <h2 class="title">Weight Goal</h2>
+              <p></p>
+              <div class="input-field">
+                <img src="../images/gaol.svg" alt="" />
+                <select id="userWeightGoal" class="dropdown mdb-select md-form" onblur="checkUserWeightGoal()">
+                  <option value="" disabled selected>Weight Goal </option>
+                  <option value="Lose">Lose</option>
+                  <option value="Maintain">Maintain</option>
+                  <option value="Gain">Gain</option>
+
+                </select>
+              </div>
+            <small style="display: none;" id="userWeightGoalError" class="form-text text-danger">This Field must be filled.</small>
+
+              <div class="input-field">                
+                <img src="../images/target.svg" alt="" />
+                <input type="number" id="userWeightTarget" onblur="checkUserWeightTarget()" placeholder="Weight Target" />
+              </div>
+              <small style="display: none;" id="userWeightTargetError" class="form-text text-danger">This Field must be filled.</small>
+              
+              <div class="input-field">
+                <img src="../images/weeklyTarget.svg" alt="" />
+                <select  id="userPace" class="dropdown mdb-select md-form" onblur="checkUserPace()">
+                  <option value="" disabled selected>Weekly Target</option>
+                  <option value="0.25">0.25 kg per week</option>
+                  <option value="0.50">0.50 kg per week</option>
+                  <option value="0.75">0.75 kg per week</option>
+                  <option value="1">1 kg per week</option>
+                </select>
+              </div>
+            <small style="display: none;" id="UserPaceError" class="form-text text-danger">This Field must be filled.</small>
+
+            </form>
+          </div>
+        </div>
+  
+        <div class="panels-container">
+          <div class="panel left-panel">
+              <div class="content">
+                  <button class="btn Continue" id="Continue" onClick="saveWeightGoal()" >
+                    Next
+                  </button>
+                </div>
+          </div>
+          <div class="panel right-panel">
+              <div class="content">
+                  <button class="btn Continue" id="Continue" onClick="saveWeightGoal()" >
+                    Next
+                  </button>
+                </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Firebase -->
+        
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyDGP3UkbOl9hTemLb4yVSQ8QdsZY6e_v-U",
+        authDomain: "calorie-5d06d.firebaseapp.com",
+        databaseURL: "https://calorie-5d06d.firebaseio.com",
+        projectId: "calorie-5d06d",
+        storageBucket: "calorie-5d06d.appspot.com",
+        messagingSenderId: "1027174222421",
+        appId: "1:1027174222421:web:0bf872cd84376c39c022dc",
+        measurementId: "G-RFLWC57HNM"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    
+    
+    
+    
+    <!-- Custom JavaScript -->
+    <script src="../js/app.js"></script>
+    
+  </body>
+</html>
